@@ -30,8 +30,11 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.app.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,7 +71,7 @@ import java.io.IOException;
  * The actual playback of the video -- sending frames to a Surface -- is the same for
  * TextureView and SurfaceView.
  */
-public class PlayMovieSurfaceActivity extends Activity implements OnItemSelectedListener,
+public class PlayMovieSurfaceActivity extends AppCmpActivity implements OnItemSelectedListener,
         SurfaceHolder.Callback, MoviePlayer.PlayerFeedback {
     private static final String TAG = MainActivity.TAG;
 
@@ -91,6 +94,8 @@ public class PlayMovieSurfaceActivity extends Activity implements OnItemSelected
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(getContentViewId());
 
         mSurfaceView = (SurfaceView) findViewById(R.id.playMovie_surface);

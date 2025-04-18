@@ -24,10 +24,14 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Choreographer;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 /**
  * Trivial activity used to test Choreographer behavior.
  */
-public class ChorTestActivity extends Activity {
+public class ChorTestActivity extends AppCmpActivity {
     private static final String TAG = "chor-test";
 
     ChorRenderThread mRenderThread;
@@ -36,6 +40,10 @@ public class ChorTestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        
+
+        
+
         setContentView(R.layout.activity_chor_test);
 
         mRenderThread = new ChorRenderThread();

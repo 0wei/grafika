@@ -25,6 +25,8 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.grafika.R;
+
 import java.io.File;
 import java.util.ArrayList;
 

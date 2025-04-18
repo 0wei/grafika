@@ -22,7 +22,15 @@ import android.opengl.GLES20;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.grafika.R;
+
 import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
@@ -40,6 +48,7 @@ import com.android.grafika.gles.FullFrameRect;
 import com.android.grafika.gles.Texture2dProgram;
 import com.android.grafika.gles.WindowSurface;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -56,7 +65,7 @@ import java.lang.ref.WeakReference;
  * through our Handler.  That causes us to render the new frame to the display and to
  * our video encoder.
  */
-public class ContinuousCaptureActivity extends Activity implements SurfaceHolder.Callback,
+public class ContinuousCaptureActivity extends AppCmpActivity implements SurfaceHolder.Callback,
         SurfaceTexture.OnFrameAvailableListener {
     private static final String TAG = MainActivity.TAG;
 
@@ -151,7 +160,7 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
                 }
                 case MSG_BUFFER_STATUS: {
                     long duration = (((long) msg.arg1) << 32) |
-                                    (((long) msg.arg2) & 0xffffffffL);
+                            (((long) msg.arg2) & 0xffffffffL);
                     activity.updateBufferStatus(duration);
                     break;
                 }
@@ -165,7 +174,6 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continuous_capture);
-
         SurfaceView sv = (SurfaceView) findViewById(R.id.continuousCapture_surfaceView);
         SurfaceHolder sh = sv.getHolder();
         sh.addCallback(this);
@@ -184,7 +192,7 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
 
         if (!PermissionHelper.hasCameraPermission(this)) {
             PermissionHelper.requestCameraPermission(this, false);
-        } else  {
+        } else {
             if (mCamera == null) {
                 // Ideally, the frames from the camera are at the same resolution as the input to
                 // the video encoder so we don't have to scale.
@@ -274,12 +282,12 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
 
         AspectFrameLayout layout = (AspectFrameLayout) findViewById(R.id.continuousCapture_afl);
 
-        Display display = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 
-        if(display.getRotation() == Surface.ROTATION_0) {
+        if (display.getRotation() == Surface.ROTATION_0) {
             mCamera.setDisplayOrientation(90);
             layout.setAspectRatio((double) cameraPreviewSize.height / cameraPreviewSize.width);
-        } else if(display.getRotation() == Surface.ROTATION_270) {
+        } else if (display.getRotation() == Surface.ROTATION_270) {
             layout.setAspectRatio((double) cameraPreviewSize.height / cameraPreviewSize.width);
             mCamera.setDisplayOrientation(180);
         } else {
@@ -433,7 +441,7 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
 
     @Override   // SurfaceTexture.OnFrameAvailableListener; runs on arbitrary thread
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        //Log.d(TAG, "frame available");
+        // Log.d(TAG, "frame available");
         mHandler.sendEmptyMessage(MainHandler.MSG_FRAME_AVAILABLE);
     }
 
@@ -462,7 +470,7 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
      * here after onPause().
      */
     private void drawFrame() {
-        //Log.d(TAG, "drawFrame");
+        // Log.d(TAG, "drawFrame");
         if (mEglCore == null) {
             Log.d(TAG, "Skipping drawFrame after shutdown");
             return;
@@ -503,9 +511,15 @@ public class ContinuousCaptureActivity extends Activity implements SurfaceHolder
         // We "draw" with the scissor rect and clear calls.  Note this uses window coordinates.
         int val = frameNum % 3;
         switch (val) {
-            case 0:  GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);   break;
-            case 1:  GLES20.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);   break;
-            case 2:  GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);   break;
+            case 0:
+                GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+                break;
+            case 1:
+                GLES20.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+                break;
+            case 2:
+                GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+                break;
         }
 
         int xpos = (int) (width * ((frameNum % 100) / 100.0f));

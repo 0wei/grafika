@@ -23,6 +23,10 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -36,7 +40,7 @@ import java.io.IOException;
  * <p>
  * TODO: consider shutting down when the screen is turned off, to preserve battery.
  */
-public class DoubleDecodeActivity extends Activity {
+public class DoubleDecodeActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     private static final int VIDEO_COUNT = 2;
@@ -48,6 +52,8 @@ public class DoubleDecodeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_double_decode);
 
         if (!sVideoRunning) {

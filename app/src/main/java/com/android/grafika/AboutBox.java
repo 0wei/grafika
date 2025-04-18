@@ -26,6 +26,8 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.View;
 
+import com.google.grafika.R;
+
 /**
  * Creates and displays an "about" box.
  */

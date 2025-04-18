@@ -30,8 +30,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.OffscreenSurface;
+import com.google.grafika.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +45,7 @@ import java.nio.ByteOrder;
 /**
  * Basic glReadPixels() speed test.
  */
-public class ReadPixelsActivity extends Activity {
+public class ReadPixelsActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     private static final int WIDTH = 1280;
@@ -55,6 +58,7 @@ public class ReadPixelsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_read_pixels);
     }
 

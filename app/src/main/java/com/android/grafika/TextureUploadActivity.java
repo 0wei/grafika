@@ -31,12 +31,15 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.Drawable2d;
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.GlUtil;
 import com.android.grafika.gles.OffscreenSurface;
 import com.android.grafika.gles.Sprite2d;
 import com.android.grafika.gles.Texture2dProgram;
+import com.google.grafika.R;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -47,7 +50,7 @@ import java.nio.ByteBuffer;
 /**
  * An unscientific test of texture upload speed.
  */
-public class TextureUploadActivity extends Activity {
+public class TextureUploadActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     // Texture width/height.
@@ -61,6 +64,8 @@ public class TextureUploadActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_texture_upload);
     }
 

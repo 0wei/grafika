@@ -25,8 +25,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.app.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.OffscreenSurface;
+import com.google.grafika.R;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,7 +39,7 @@ import java.util.Arrays;
 /**
  * Simple activity that gathers and displays information from the GLES driver.
  */
-public class GlesInfoActivity extends Activity {
+public class GlesInfoActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     private String mGlInfo;
@@ -45,6 +48,8 @@ public class GlesInfoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_gles_info);
 
         mOutputFile = new File(getFilesDir(), "gles-info.txt");

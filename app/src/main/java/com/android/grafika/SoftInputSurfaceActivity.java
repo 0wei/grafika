@@ -28,6 +28,10 @@ import android.view.Surface;
 import android.widget.TextView;
 import android.app.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -39,7 +43,7 @@ import java.nio.ByteBuffer;
  *
  * See also https://code.google.com/p/android/issues/detail?id=61194
  */
-public class SoftInputSurfaceActivity extends Activity {
+public class SoftInputSurfaceActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
     private static final boolean VERBOSE = true;
 
@@ -65,6 +69,8 @@ public class SoftInputSurfaceActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_soft_input_surface);
 
         TextView tv = (TextView) findViewById(R.id.softInputResult_text);

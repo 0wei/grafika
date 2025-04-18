@@ -33,12 +33,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.app.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.Drawable2d;
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.GlUtil;
 import com.android.grafika.gles.Sprite2d;
 import com.android.grafika.gles.Texture2dProgram;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -76,7 +79,7 @@ import java.lang.ref.WeakReference;
  * <li> (For most things) The UI thread updates some text views.
  * </ol>
  */
-public class TextureFromCameraActivity extends Activity implements SurfaceHolder.Callback,
+public class TextureFromCameraActivity extends AppCmpActivity implements SurfaceHolder.Callback,
         SeekBar.OnSeekBarChangeListener {
     private static final String TAG = MainActivity.TAG;
 
@@ -121,6 +124,8 @@ public class TextureFromCameraActivity extends Activity implements SurfaceHolder
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_texture_from_camera);
 
         mHandler = new MainHandler(this);

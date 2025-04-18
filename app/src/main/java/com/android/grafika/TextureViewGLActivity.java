@@ -26,8 +26,11 @@ import android.widget.Button;
 import android.app.Activity;
 import android.graphics.SurfaceTexture;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 /**
  * Simple demonstration of using GLES to draw on a TextureView.
@@ -52,7 +55,7 @@ import com.android.grafika.gles.WindowSurface;
  * to run as the TextureView is being destroyed (we stop the thread in onDestroy() rather
  * than onPause()).  Normally the renderer would be stopped when the application pauses.
  */
-public class TextureViewGLActivity extends Activity {
+public class TextureViewGLActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     // Experiment with allowing TextureView to release the SurfaceTexture from the callback vs.
@@ -70,6 +73,8 @@ public class TextureViewGLActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        
+
 
         // Start up the Renderer thread.  It'll sleep until the TextureView is ready.
         mRenderer = new Renderer();

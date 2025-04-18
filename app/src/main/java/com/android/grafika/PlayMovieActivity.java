@@ -31,6 +31,10 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -46,7 +50,7 @@ import java.io.IOException;
  * TODO: investigate crash when screen is rotated while movie is playing (need
  *       to have onPause() wait for playback to stop)
  */
-public class PlayMovieActivity extends Activity implements OnItemSelectedListener,
+public class PlayMovieActivity extends AppCmpActivity implements OnItemSelectedListener,
         TextureView.SurfaceTextureListener, MoviePlayer.PlayerFeedback {
     private static final String TAG = MainActivity.TAG;
 
@@ -63,7 +67,6 @@ public class PlayMovieActivity extends Activity implements OnItemSelectedListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_movie);
-
         mTextureView = (TextureView) findViewById(R.id.movie_texture_view);
         mTextureView.setSurfaceTextureListener(this);
 

@@ -35,9 +35,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.GlUtil;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 import java.lang.ref.WeakReference;
 
@@ -55,7 +58,7 @@ import java.lang.ref.WeakReference;
  * actual-reported vsync time (which may itself be slightly offset from the actual-actual
  * vsync time).  None of this is terribly important unless you care about A/V sync.
  */
-public class ScheduledSwapActivity extends Activity implements OnItemSelectedListener,
+public class ScheduledSwapActivity extends AppCmpActivity implements OnItemSelectedListener,
         SurfaceHolder.Callback, Choreographer.FrameCallback {
     private static final String TAG = MainActivity.TAG;
 
@@ -118,6 +121,8 @@ public class ScheduledSwapActivity extends Activity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_scheduled_swap);
 
         // Update-rate spinner; specifies the frame rate.

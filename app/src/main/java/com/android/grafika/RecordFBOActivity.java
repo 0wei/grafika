@@ -35,6 +35,8 @@ import android.widget.TextView;
 import android.app.Activity;
 import android.graphics.Rect;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.Drawable2d;
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.FlatShadedProgram;
@@ -43,6 +45,7 @@ import com.android.grafika.gles.GlUtil;
 import com.android.grafika.gles.Sprite2d;
 import com.android.grafika.gles.Texture2dProgram;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,7 +96,7 @@ import java.lang.ref.WeakReference;
  * <p>
  * TODO: show the MP4 file name somewhere in the UI so people can find it in the player
  */
-public class RecordFBOActivity extends Activity implements SurfaceHolder.Callback,
+public class RecordFBOActivity extends AppCmpActivity implements SurfaceHolder.Callback,
         Choreographer.FrameCallback {
     private static final String TAG = MainActivity.TAG;
 
@@ -113,7 +116,9 @@ public class RecordFBOActivity extends Activity implements SurfaceHolder.Callbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        KtExKt.javaEnableEdgeToEdge(this);
         setContentView(R.layout.activity_record_fbo);
+        KtExKt.javaSetOnApplyWindowInsetsListener(this);
 
         mSelectedRecordMethod = RECMETHOD_FBO;
         updateControls();
@@ -281,18 +286,15 @@ public class RecordFBOActivity extends Activity implements SurfaceHolder.Callbac
             return;
         }
 
-        switch (rb.getId()) {
-            case R.id.recDrawTwice_radio:
-                mSelectedRecordMethod = RECMETHOD_DRAW_TWICE;
-                break;
-            case R.id.recFbo_radio:
-                mSelectedRecordMethod = RECMETHOD_FBO;
-                break;
-            case R.id.recFramebuffer_radio:
-                mSelectedRecordMethod = RECMETHOD_BLIT_FRAMEBUFFER;
-                break;
-            default:
-                throw new RuntimeException("Click from unknown id " + rb.getId());
+        int id = rb.getId();
+        if (id == R.id.recDrawTwice_radio) {
+            mSelectedRecordMethod = RECMETHOD_DRAW_TWICE;
+        } else if (id == R.id.recFbo_radio) {
+            mSelectedRecordMethod = RECMETHOD_FBO;
+        } else if (id == R.id.recFramebuffer_radio) {
+            mSelectedRecordMethod = RECMETHOD_BLIT_FRAMEBUFFER;
+        } else {
+            throw new RuntimeException("Click from unknown id " + rb.getId());
         }
 
         Log.d(TAG, "Selected rec mode " + mSelectedRecordMethod);

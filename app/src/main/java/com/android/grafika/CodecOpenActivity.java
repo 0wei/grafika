@@ -26,6 +26,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 /**
  * Opens a large number of MediaCodec encoders, just to see what happens.
  * <p>
@@ -33,7 +37,7 @@ import android.content.DialogInterface;
  * eventually.  The activity provides a "GC" button (so you can force the GC to happen)
  * and a "Halt" button (which kills the app so you can see if mediaserver is cleaning up).
  */
-public class CodecOpenActivity extends Activity {
+public class CodecOpenActivity extends AppCmpActivity {
     private static final String TAG = MainActivity.TAG;
 
     private static final int MAX_OPEN = 256;
@@ -41,6 +45,8 @@ public class CodecOpenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_codec_open);
     }
 

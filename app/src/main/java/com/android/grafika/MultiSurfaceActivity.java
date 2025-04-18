@@ -31,8 +31,11 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.os.Trace;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.EglCore;
 import com.android.grafika.gles.WindowSurface;
+import com.google.grafika.R;
 
 /**
  * Exercises some less-commonly-used aspects of SurfaceView.  In particular:
@@ -46,7 +49,7 @@ import com.android.grafika.gles.WindowSurface;
  * <code>systrace.py --app=com.android.grafika gfx view sched dalvik</code>
  * (most interesting while bouncing).
  */
-public class MultiSurfaceActivity extends Activity implements SurfaceHolder.Callback {
+public class MultiSurfaceActivity extends AppCmpActivity implements SurfaceHolder.Callback {
     private static final String TAG = MainActivity.TAG;
 
     // Number of steps in each direction.  There's actually N+1 positions because we
@@ -62,6 +65,8 @@ public class MultiSurfaceActivity extends Activity implements SurfaceHolder.Call
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_multi_surface_test);
 
         // #1 is at the bottom; mark it as secure just for fun.  By default, this will use

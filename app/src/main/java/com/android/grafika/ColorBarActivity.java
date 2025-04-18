@@ -27,10 +27,14 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Typeface;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.grafika.R;
+
 /**
  * Show color bars.
  */
-public class ColorBarActivity extends Activity implements SurfaceHolder.Callback {
+public class ColorBarActivity extends AppCmpActivity implements SurfaceHolder.Callback {
     private static final String TAG = MainActivity.TAG;
 
     private SurfaceView mSurfaceView;
@@ -42,6 +46,8 @@ public class ColorBarActivity extends Activity implements SurfaceHolder.Callback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_color_bar);
 
         mSurfaceView = (SurfaceView) findViewById(R.id.colorBarSurfaceView);

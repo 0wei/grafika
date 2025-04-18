@@ -23,8 +23,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+
+
 import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
@@ -41,8 +41,13 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.grafika.gles.FullFrameRect;
 import com.android.grafika.gles.Texture2dProgram;
+import com.google.grafika.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,7 +130,7 @@ import javax.microedition.khronos.opengles.GL10;
  * continues to generate preview frames while the Activity is paused.)  The video encoder object
  * is managed as a static property of the Activity.
  */
-public class CameraCaptureActivity extends Activity
+public class CameraCaptureActivity extends AppCmpActivity
         implements SurfaceTexture.OnFrameAvailableListener, OnItemSelectedListener {
     private static final String TAG = MainActivity.TAG;
     private static final boolean VERBOSE = false;
@@ -152,6 +157,8 @@ public class CameraCaptureActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
         setContentView(R.layout.activity_camera_capture);
 
         File outputFile = new File(getFilesDir(), "camera-test.mp4");
